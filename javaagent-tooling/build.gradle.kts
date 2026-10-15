@@ -37,6 +37,8 @@ dependencies {
   // Exporters with dependencies
   implementation("io.opentelemetry:opentelemetry-exporter-logging")
   implementation("io.opentelemetry:opentelemetry-exporter-otlp")
+  // SenderUtil is used by OtlpHttpJsonProtocolCustomizerProvider
+  implementation("io.opentelemetry:opentelemetry-exporter-common")
   implementation("io.opentelemetry:opentelemetry-exporter-logging-otlp")
 
   implementation("io.opentelemetry:opentelemetry-exporter-prometheus")
