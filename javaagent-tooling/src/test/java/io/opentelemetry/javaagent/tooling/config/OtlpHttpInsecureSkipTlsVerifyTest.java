@@ -42,7 +42,8 @@ class OtlpHttpInsecureSkipTlsVerifyTest {
   private static final char[] PASSWORD = "changeit".toCharArray();
 
   // the test JVM trusts a shared test certificate (javax.net.ssl.trustStore), so generate a new
-  // self-signed one that is guaranteed not to be trusted
+  // self-signed one that is guaranteed not to be trusted, and that is issued for a different host
+  // name than the one the exporter connects to, so that host name verification fails too
   private static SSLContext serverSslContext;
 
   private HttpsServer server;
@@ -63,9 +64,9 @@ class OtlpHttpInsecureSkipTlsVerifyTest {
                 "-keysize",
                 "2048",
                 "-dname",
-                "CN=localhost",
+                "CN=untrusted.example",
                 "-ext",
-                "SAN=dns:localhost",
+                "SAN=dns:untrusted.example",
                 "-validity",
                 "1",
                 "-storetype",
